@@ -6,12 +6,12 @@ function App() {
 
   return (
     <div className="text-center">
-      <header className="bg-gray-700 min-h-screen flex flex-col justify-center items-center text-2xl text-white">
+      <header className="flex flex-col items-center justify-center min-h-screen text-2xl text-white bg-gray-700">
         <img src={logo} className="animate-spin-slow h-72" alt="logo" />
         <p>Hello Vite + React!</p>
         <p className="my-8">
           <button
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-teal-600 border border-transparent rounded-md shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             onClick={() => setCount((count) => count + 1)}
           >
             Count is: {count}
