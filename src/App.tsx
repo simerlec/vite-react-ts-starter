@@ -1,12 +1,31 @@
 import React, { useState } from "react";
+import { MoonIcon } from "./icons/Moon";
 import logo from "./logo.svg";
 
 function App() {
   const [count, setCount] = useState(0);
 
+  function toggleDarkMode() {
+    if (localStorage.theme === "dark") {
+      localStorage.setItem("theme", "light");
+      document.documentElement.classList.remove("dark");
+    } else {
+      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.add("dark");
+    }
+  }
+
   return (
-    <div className="text-center">
-      <header className="flex flex-col items-center justify-center min-h-screen text-2xl text-white bg-gray-700">
+    <div className="flex flex-col min-h-screen text-center bg-white dark:bg-gray-700">
+      <nav className="flex items-center justify-end h-16 px-4">
+        <button
+          className="flex p-2 text-black rounded hover:text-yellow-400 dark:text-white focus:outline-none hover:bg-gray-700 dark:hover:bg-gray-500 dark:hover:text-yellow-400"
+          onClick={toggleDarkMode}
+        >
+          <MoonIcon></MoonIcon>
+        </button>
+      </nav>
+      <header className="flex flex-col items-center justify-center flex-grow text-2xl text-gray-700 dark:text-white">
         <img src={logo} className="animate-spin-slow h-72" alt="logo" />
         <p>Hello Vite + React!</p>
         <p className="my-8">
