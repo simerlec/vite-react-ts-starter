@@ -6,7 +6,11 @@ function App() {
   const [count, setCount] = useState(0);
 
   function toggleDarkMode() {
-    if (localStorage.theme === "dark") {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
       localStorage.setItem("theme", "light");
       document.documentElement.classList.remove("dark");
     } else {
