@@ -23,7 +23,7 @@ function App() {
     <div className="flex flex-col min-h-screen text-center bg-white dark:bg-gray-700">
       <nav className="flex items-center justify-end h-16 px-4">
         <button
-          className="flex p-2 text-black rounded hover:text-yellow-400 dark:text-white focus:outline-none hover:bg-gray-700 dark:hover:bg-gray-500 dark:hover:text-yellow-400"
+          className="flex p-2 text-black rounded hover:text-yellow-400 dark:text-white focus:outline-none hover:bg-gray-500 dark:hover:bg-gray-500 dark:hover:text-yellow-400"
           onClick={toggleDarkMode}
         >
           <MoonIcon></MoonIcon>
