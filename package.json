@@ -22,7 +22,7 @@
     "autoprefixer": "^10.4.15",
     "jsdom": "^22.1.0",
     "postcss": "^8.4.28",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
     "vitest": "^0.34.3"
