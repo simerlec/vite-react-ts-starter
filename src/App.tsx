@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MoonIcon } from "@/icons/Moon";
 import { CountButton } from "@/components/CountButton";
 import logo from "@/logo.svg";
