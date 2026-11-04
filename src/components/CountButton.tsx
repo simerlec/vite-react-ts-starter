@@ -3,13 +3,14 @@ interface CountButtonProps {
   onClick: () => void;
 }
 
-export const CountButton = ({ count, onClick }: CountButtonProps) => {
+export function CountButtonComponent({ count, onClick }: CountButtonProps) {
   return (
     <button
-      className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-teal-600 border border-transparent rounded-md shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+      type="button"
+      className="inline-flex items-center rounded-md border border-transparent bg-teal-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-teal-700 focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:outline-hidden"
       onClick={onClick}
     >
       Count is: {count}
     </button>
   );
-};
+}

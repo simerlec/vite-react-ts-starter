@@ -1,42 +1,35 @@
 import { useState } from "react";
-import { MoonIcon } from "@/icons/Moon";
-import { CountButton } from "@/components/CountButton";
+import { MoonIconComponent } from "@/icons/Moon";
+import { SunIconComponent } from "@/icons/Sun";
+import { CountButtonComponent } from "@/components/CountButton";
+import { useTheme } from "@/hooks/useTheme";
 import logo from "@/logo.svg";
 
-function App() {
+function AppComponent() {
   const [count, setCount] = useState(0);
-
-  function toggleDarkMode() {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      localStorage.setItem("theme", "light");
-      document.documentElement.classList.remove("dark");
-    } else {
-      localStorage.setItem("theme", "dark");
-      document.documentElement.classList.add("dark");
-    }
-  }
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="flex flex-col min-h-screen text-center bg-white dark:bg-gray-700">
-      <nav className="flex items-center justify-end h-16 px-4">
+    <div className="flex min-h-screen flex-col bg-white text-center dark:bg-gray-700">
+      <nav className="flex h-16 items-center justify-end px-4">
         <button
-          className="flex p-2 text-black rounded hover:text-yellow-400 dark:text-white focus:outline-none hover:bg-gray-500 dark:hover:bg-gray-500 dark:hover:text-yellow-400"
-          onClick={toggleDarkMode}
+          type="button"
+          aria-label={
+            theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+          }
+          className="flex rounded-sm p-2 text-black hover:bg-gray-500 hover:text-yellow-400 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-teal-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-yellow-400"
+          onClick={toggleTheme}
         >
-          <MoonIcon></MoonIcon>
+          {theme === "dark" ? <SunIconComponent /> : <MoonIconComponent />}
         </button>
       </nav>
-      <header className="flex flex-col items-center justify-center flex-grow text-2xl text-gray-700 dark:text-white">
-        <img src={logo} className="animate-spin-slow h-72" alt="logo" />
+      <header className="flex grow flex-col items-center justify-center text-2xl text-gray-700 dark:text-white">
+        <img src={logo} className="h-72 animate-spin-slow" alt="logo" />
         <p>Hello Vite + React!</p>
         <p className="my-8">
-          <CountButton
+          <CountButtonComponent
             count={count}
-            onClick={() => setCount((count) => count + 1)}
+            onClick={() => setCount((previousCount) => previousCount + 1)}
           />
         </p>
         <p>
@@ -45,7 +38,7 @@ function App() {
         <p>
           <a
             className="text-blue-400"
-            href="https://reactjs.org"
+            href="https://react.dev"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -54,7 +47,7 @@ function App() {
           {" | "}
           <a
             className="text-blue-400"
-            href="https://vitejs.dev/guide/features.html"
+            href="https://vite.dev/guide/features.html"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -66,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppComponent;
