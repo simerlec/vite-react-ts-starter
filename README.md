@@ -1,62 +1,77 @@
 # vite-react-ts-starter
 
-A modern Vite starter template using React and TypeScript.
+[![CI](https://github.com/simerlec/vite-react-ts-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/simerlec/vite-react-ts-starter/actions/workflows/ci.yml)
+
+A modern, minimal starter template for React and TypeScript, built with Vite, styled with Tailwind CSS and tested with Vitest. It has linting, formatting and CI set up from the start.
 
 ## Tech Stack
 
-### Core
+| Area       | Tools                                                                                                                                             |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Core       | [Vite 8](https://vite.dev), [React 19](https://react.dev), [TypeScript 7](https://www.typescriptlang.org)                                         |
+| Styling    | [Tailwind CSS 4](https://tailwindcss.com) via `@tailwindcss/vite`                                                                                 |
+| Testing    | [Vitest 5](https://vitest.dev), [Testing Library](https://testing-library.com) (`react`, `dom`, `jest-dom`), jsdom                                |
+| Linting    | [oxlint](https://oxc.rs/docs/guide/usage/linter) with React, JSX a11y, import, Vitest and TypeScript rules                                        |
+| Formatting | [Prettier](https://prettier.io) with [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) for class sorting |
+| CI         | GitHub Actions, plus Dependabot for npm packages and GitHub Actions                                                                               |
 
-- **Vite** `^7.2.2` - Build tool and dev server
-- **React** `^19.2.0` - UI library
-- **TypeScript** `^5.9.3` - Type safety
-
-### Styling
-
-- **Tailwind CSS** `^4.1.17` - Utility-first CSS framework
-- **@tailwindcss/vite** `^4.1.17` - Tailwind CSS Vite plugin
-
-### Testing
-
-- **Vitest** `^4.0.8` - Fast unit test framework
-- **@testing-library/react** `^16.3.0` - React testing utilities
-- **@testing-library/jest-dom** `^6.9.1` - Custom Jest matchers
-- **jsdom** `^27.1.0` - DOM implementation for testing
-
-### Development Tools
-
-- **@vitejs/plugin-react** `^5.1.0` - Vite plugin for React
-- **@types/node** `^22.10.2` - Node.js type definitions
-- **@types/react** `^19.2.3` - React type definitions
-- **@types/react-dom** `^19.2.2` - React DOM type definitions
+Exact versions are in [`package.json`](./package.json).
 
 ## Features
 
-- ⚡️ Fast HMR (Hot Module Replacement)
-- 🎨 Tailwind CSS v4 with dark mode support
-- 📦 Path aliases (`@/` for cleaner imports)
-- 🧪 Vitest testing setup
-- 🔧 TypeScript strict mode enabled
-- 📱 Modern React 19 features
+- ⚡️ Fast dev server and HMR
+- 🌗 Dark mode that follows the OS setting until you choose a theme, then remembers the choice, with no flash of the wrong theme on load
+- 📦 `@/` path alias, defined once in `tsconfig.json` and picked up by Vite (`resolve.tsconfigPaths`)
+- 🔧 Strict TypeScript, including `noUnusedLocals`, `noUnusedParameters` and `noUncheckedIndexedAccess`
+- 🧪 Vitest with Testing Library and `jest-dom` matchers, with globals enabled
+- ♿️ Accessibility lint rules and an accessible theme toggle (labelled, keyboard focus ring)
+- ✅ One command (`npm run test-all`) that runs the same checks locally as CI does
 
 ## Getting Started
 
+Requires Node.js `^22.22.2`, `^24.15.0` or `>=26`.
+
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
+```
 
-# Build for production
-npm run build
+## Scripts
 
-# Preview production build
-npm run serve
+| Script               | Description                                                   |
+| -------------------- | ------------------------------------------------------------- |
+| `npm run dev`        | Start the dev server                                          |
+| `npm run build`      | Type-check with `tsc` and build for production into `dist/`   |
+| `npm run serve`      | Preview the production build                                  |
+| `npm test`           | Run the tests once                                            |
+| `npm run test:watch` | Run the tests in watch mode                                   |
+| `npm run lint`       | Lint with oxlint (`lint:quiet` shows errors only)             |
+| `npm run format`     | Format with Prettier (`format:check` only checks)             |
+| `npm run test-all`   | Format check, lint, type-check and build, tests: what CI runs |
 
-# Run tests
-npm test
+## Project Structure
+
+```
+├── .github/
+│   ├── workflows/ci.yml   # Runs `npm run test-all` on pushes to main and on PRs
+│   └── dependabot.yml     # Monthly npm + GitHub Actions updates
+├── public/                # Static assets served as-is (favicon)
+├── src/
+│   ├── components/        # UI components
+│   ├── hooks/             # Custom hooks (useTheme)
+│   ├── icons/             # SVG icon components
+│   ├── App.tsx            # Root component
+│   ├── App.test.tsx       # Tests
+│   ├── index.css          # Tailwind entry, dark-mode variant, theme tokens
+│   └── main.tsx           # React entry point
+├── index.html             # HTML entry; sets the initial theme before first paint
+├── .oxlintrc.json         # Lint rules
+├── .prettierrc            # Prettier config (Tailwind class sorting)
+├── tsconfig.json
+├── vite.config.ts         # Vite + Vitest config
+└── vitest.setup.ts        # Registers jest-dom matchers
 ```
 
 ## Codesandbox
 
-You can also find a codesandbox template of this repo [here](https://codesandbox.io/p/sandbox/github/simerlec/vite-react-ts-starter/tree/main)
+You can also open this template on [CodeSandbox](https://codesandbox.io/p/sandbox/github/simerlec/vite-react-ts-starter/tree/main).

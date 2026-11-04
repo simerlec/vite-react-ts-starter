@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "jsx-a11y",
+    "import",
+    "vitest"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "warn",
+    "react/react-in-jsx-scope": "off",
+    "import/no-unassigned-import": [
+      "warn",
+      {
+        "allow": ["**/*.css", "@testing-library/jest-dom/vitest"]
+      }
+    ],
+    "react/button-has-type": "error",
+    "jsx-a11y/control-has-associated-label": "error",
+    "jsx-a11y/click-events-have-key-events": "error",
+    "jsx-a11y/interactive-supports-focus": "error",
+    "jsx-a11y/no-static-element-interactions": "error",
+    "jsx-a11y/no-noninteractive-element-interactions": "error"
+  },
+  "ignorePatterns": ["dist"]
+}

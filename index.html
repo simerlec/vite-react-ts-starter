@@ -1,20 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="src/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Vite React TS Starter</title>
     <script>
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
+      // Runs before first paint to avoid a flash of the wrong theme.
+      // An explicit choice in localStorage wins; otherwise follow the OS setting.
+      // src/hooks/useTheme.ts reads the resulting `dark` class as its initial state.
+      let storedTheme = null;
+      try {
+        storedTheme = localStorage.getItem("theme");
+      } catch {
+        // Storage can be unavailable (e.g. blocked site data); fall back to the OS setting.
       }
+      const isDark =
+        storedTheme === "dark" ||
+        (storedTheme === null &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.classList.toggle("dark", isDark);
     </script>
   </head>
   <body>
