@@ -5,9 +5,34 @@ updates:
     schedule:
       interval: monthly
       time: "04:00"
+    # Only propose releases that are at least 7 days old (security updates are not delayed)
+    cooldown:
+      default-days: 7
+    # One PR per month for all minor + patch bumps; major bumps still get their own PR
+    groups:
+      npm-minor-and-patch:
+        update-types:
+          - minor
+          - patch
+        # Formatter bumps can reformat files or reorder classes, so they stay separate PRs
+        exclude-patterns:
+          - "prettier*"
+    ignore:
+      # Keep the types on the Node major we run (see engines); bump together with Node
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
     open-pull-requests-limit: 10
+
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: monthly
       time: "04:00"
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions-minor-and-patch:
+        update-types:
+          - minor
+          - patch
