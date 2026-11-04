@@ -29,7 +29,7 @@ Exact versions are in [`package.json`](./package.json).
 
 ## Getting Started
 
-Requires Node.js `^22.22.2`, `^24.15.0` or `>=26`.
+Requires Node.js `^24.15.0` or `>=26` (CI tests both).
 
 ```bash
 npm install
@@ -53,7 +53,7 @@ npm run dev
 
 ```
 ├── .github/
-│   ├── workflows/ci.yml   # Runs `npm run test-all` on pushes to main and on PRs
+│   ├── workflows/ci.yml   # Runs `npm run test-all` on Node 24 and 26 for pushes to main and PRs
 │   └── dependabot.yml     # Monthly npm + GitHub Actions updates
 ├── public/                # Static assets served as-is (favicon)
 ├── src/
@@ -75,3 +75,7 @@ npm run dev
 ## Codesandbox
 
 You can also open this template on [CodeSandbox](https://codesandbox.io/p/sandbox/github/simerlec/vite-react-ts-starter/tree/main).
+
+## License
+
+[MIT](./LICENSE)
